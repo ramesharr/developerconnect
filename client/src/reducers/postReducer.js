@@ -3,12 +3,14 @@ import {
   GET_POSTS,
   GET_POST,
   DELETE_POST,
-  POST_LOADING
+  POST_LOADING,
+  TWITTER_PROFILE
 } from '../actions/types';
 
 const initialState = {
   posts: [],
   post: {},
+  tprofiles:null,
   loading: false
 };
 
@@ -36,7 +38,13 @@ export default function(state = initialState, action) {
         ...state,
         posts: [action.payload, ...state.posts]
       };
-    case DELETE_POST:
+    case TWITTER_PROFILE:
+      return {
+        ...state,
+        tprofiles: action.payload, 
+        loading: false
+      };
+      case DELETE_POST:
       return {
         ...state,
         posts: state.posts.filter(post => post._id !== action.payload)

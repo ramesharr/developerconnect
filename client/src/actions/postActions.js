@@ -7,7 +7,8 @@ import {
   GET_POSTS,
   GET_POST,
   POST_LOADING,
-  DELETE_POST
+  DELETE_POST,
+  TWITTER_PROFILE
 } from './types';
 
 // Add Post
@@ -18,6 +19,27 @@ export const addPost = postData => dispatch => {
     .then(res =>
       dispatch({
         type: ADD_POST,
+        payload: res.data
+      })
+
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Twitter Profile
+// Add name
+export const twitterprofile = postName => dispatch => {
+  dispatch(setPostLoading());
+  axios
+    .post('/api/users/twitter', postName)
+    .then(res =>
+      dispatch({
+        type: TWITTER_PROFILE,
         payload: res.data
       })
     )

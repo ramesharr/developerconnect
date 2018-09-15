@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
 const fetch = require('node-fetch');
+var Twitter = require('twitter');
 
 // Load Input Validation
 const validateRegisterInput = require('../../validation/register');
@@ -17,7 +18,31 @@ const User = require('../../models/User');
 // @route   GET api/users/test
 // @desc    Tests users route
 // @access  Public
-router.get('/test', (req, res) => res.json({ msg: 'Users Works' }));
+router.get('/test', (req, res) =>{
+
+  res.json({ msg: 'Users Works' })
+
+});
+
+//get twitter accounts by their names
+router.post('/twitter', (req, res) =>{
+  var client = new Twitter({
+    consumer_key: 'e4HtF9Pdkqyr3wOdpBqdGYY4b',
+    consumer_secret: '3IlocdtwThcKuew0l3fmccsH35ruEwyxEwXrznqdVN3YQbgxuT',
+    access_token_key: '620717883-KJnqENhdgRCfgcFKH1qkvTTrY0bh6ZaRipkyyKoI',
+    access_token_secret: 'Vs8rDFwzttQKfaLjTPY1ApXZ7ViD65koQFvJ6AFoeFvjz'
+  });
+   
+  var params = req.body;
+
+  client.get('users/search', params, function(error, users, response) {
+    if (!error) {
+      res.json(users);
+    }
+  });
+
+
+});
 
 // @route   POST api/users/register
 // @desc    Register user
