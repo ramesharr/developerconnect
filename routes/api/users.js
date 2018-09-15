@@ -27,10 +27,10 @@ router.get('/test', (req, res) =>{
 //get twitter accounts by their names
 router.post('/twitter', (req, res) =>{
   var client = new Twitter({
-    consumer_key: 'e4HtF9Pdkqyr3wOdpBqdGYY4b',
-    consumer_secret: '3IlocdtwThcKuew0l3fmccsH35ruEwyxEwXrznqdVN3YQbgxuT',
-    access_token_key: '620717883-KJnqENhdgRCfgcFKH1qkvTTrY0bh6ZaRipkyyKoI',
-    access_token_secret: 'Vs8rDFwzttQKfaLjTPY1ApXZ7ViD65koQFvJ6AFoeFvjz'
+    consumer_key: '',
+    consumer_secret: '',
+    access_token_key: '',
+    access_token_secret: ''
   });
    
   var params = req.body;
