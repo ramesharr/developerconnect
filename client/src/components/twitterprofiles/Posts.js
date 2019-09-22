@@ -42,7 +42,7 @@ Posts.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  post: state.post.tprofiles
+  post: state.post
 });
 
 export default connect(mapStateToProps, { getPosts })(Posts);
